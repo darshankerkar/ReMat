@@ -1,0 +1,280 @@
+/* BinScreen.css */
+
+/* Fullscreen container with bin background */
+.bin-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-image: url('/bin-background.png'); /* Place bin image in public folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Overlay to darken background slightly */
+.bin-fullscreen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Screen content - positioned to overlay on the bin's LCD screen */
+.bin-screen-content {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-54%, -50%); /* moved left */
+
+  width: 52vw;
+  max-width: 640px;
+  height: 300vh;
+  max-height: 300px;
+
+  background: linear-gradient(to bottom, #b9babd, #b9babd);
+  border: none;
+  border-radius: 0;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 30px 40px;
+  gap: 40px;
+}
+
+
+
+/* Left Section - Information */
+.info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin: 0;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.info-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #000;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: 0.3px;
+}
+
+.info-id {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+  letter-spacing: 0.3px;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+}
+
+.info-fill {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #16a34a;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Right Section - QR Code */
+.qr-section {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.qr-code-wrapper {
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e5e7eb;
+}
+
+.qr-label {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #000;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* Loading State */
+.loading-spinner {
+  width: 80px;
+  height: 80px;
+  border: 8px solid #e5e7eb;
+  border-top-color: #16a34a;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  color: #000;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Error State */
+.error-icon {
+  font-size: 5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .bin-screen-content {
+    width: 50vw;
+    height: 26vh;
+    padding: 25px 35px;
+    gap: 30px;
+  }
+
+  .info-title {
+    font-size: 1.6rem;
+  }
+
+  .info-id {
+    font-size: 1.2rem;
+  }
+
+  .info-fill {
+    font-size: 2.5rem;
+  }
+
+  .qr-code-wrapper svg {
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  .qr-label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .bin-screen-content {
+    width: 90vw;
+    height: auto;
+    min-height: 400px;
+    flex-direction: column;
+    padding: 30px;
+    gap: 30px;
+  }
+
+  .info-section {
+    gap: 20px;
+  }
+
+  .info-title {
+    font-size: 1.8rem;
+  }
+
+  .info-id {
+    font-size: 1.3rem;
+  }
+
+  .info-fill {
+    font-size: 2.5rem;
+  }
+
+  .qr-code-wrapper {
+    padding: 15px;
+  }
+
+  .qr-code-wrapper svg {
+    width: 160px !important;
+    height: 160px !important;
+  }
+
+  .qr-label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bin-screen-content {
+    border-width: 12px;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .info-label {
+    font-size: 0.9rem;
+  }
+
+  .info-title {
+    font-size: 1.5rem;
+  }
+
+  .info-id {
+    font-size: 1.1rem;
+  }
+
+  .info-fill {
+    font-size: 2rem;
+  }
+
+  .qr-code-wrapper {
+    padding: 12px;
+  }
+
+  .qr-code-wrapper svg {
+    width: 140px !important;
+    height: 140px !important;
+  }
+
+  .qr-label {
+    font-size: 1rem;
+  }
+}
