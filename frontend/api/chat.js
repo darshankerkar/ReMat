@@ -1,8 +1,6 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-
 const GROQ_MODEL = "openai/gpt-oss-20b";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
